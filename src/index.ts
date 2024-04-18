@@ -24,10 +24,6 @@ app.get('/', (_req, res) => res.redirect('/static'));
 
 io.on('connection', () => log('Socket connection'));
 
-setInterval(() => {
-  io.emit('show-page', Math.floor(Math.random() * 3));
-}, 5000);
-
 server.listen(PORT, () => {
   log(`Listening on http://localhost:${PORT}.`);
 });
