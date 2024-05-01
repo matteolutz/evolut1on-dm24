@@ -4,9 +4,13 @@ import setResettableTimeout from "./lib/timeout.js";
 const socket = io();
 const root = document.body;
 
+const DEV = false;
+
+const SCREEN_SAVER_TIMEOUT = DEV ? 5000 : 1000 * 60 * 1.5;
+
 const { reset: resetScreenSaverTimeout } = setResettableTimeout(() => {
   location.hash = '/';
-}, 1000 * 60 * 1.5);
+}, SCREEN_SAVER_TIMEOUT);
 
 socket.on('show-page', (pageId) => {
   resetScreenSaverTimeout();
